@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand: #384fe9;
+  --color-brand-600: #2c41d6;
+  --color-brand-700: #2335b8;
+  --color-brand-50: #eceffd;
+  --color-brand-100: #dfe3fc;
+
+  --color-ink: #0c0d16;
+  --color-ink-700: #2a2d3a;
+  --color-muted: #4b5061;
+  --color-subtle: #6b7080;
+  --color-line: #e6e7ee;
+
+  --color-hero: #f2f3fe;
+  --color-panel: #f6f6fb;
+  --color-night: #0b0c13;
+  --color-navy: #0d1231;
+  --color-sun: #f5b82e;
+
+  --container-site: 1088px;
+
+  --shadow-card: 0 1px 2px rgb(16 24 40 / 0.04);
+  --shadow-float: 0 10px 30px -8px rgb(20 26 60 / 0.18);
+  --shadow-brand: 0 10px 24px -6px rgb(56 79 233 / 0.45);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    letter-spacing: -0.02em;
+  }
+  section[id] { scroll-margin-top: 88px; }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@keyframes ghost-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+@utility container-site {
+  width: 100%;
+  max-width: calc(var(--container-site) + 2.5rem);
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (min-width: 640px) { padding-inline: 1.25rem; }
+}
+
+@utility heading-xl {
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+@utility heading-lg {
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
