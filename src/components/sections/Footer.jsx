@@ -2,6 +2,7 @@ import { CircleAlert, CircleCheck, LoaderCircle, Mail, MapPin, Phone } from 'luc
 import { useId, useState } from 'react'
 import { CONTACT, FOOTER_COUNTRY_LINKS, NAV_LINKS } from '../../data/content'
 import { useEmailForm } from '../../hooks/useEmailForm'
+import { goHome } from '../../lib/nav'
 import { useDemo } from '../DemoContext'
 import { Modal } from '../ui/Modal'
 import { LogoStacked } from '../ui/Logo'
@@ -113,8 +114,14 @@ export function Footer() {
           <h2 id="footer-quick" className="text-[15px] font-bold text-ink">Quick Links</h2>
           <ul className="mt-5 space-y-[14px]">
             {NAV_LINKS.map((l) => (
-              <li key={l.href}>
-                <a href={l.href} className={linkCls}>{l.label}</a>
+              <li key={l.label}>
+                {l.href ? (
+                  <a href={l.href} onClick={l.href === '/' ? goHome : undefined} className={linkCls}>
+                    {l.label}
+                  </a>
+                ) : (
+                  <span className="text-[13.5px] leading-5 text-ink-700/85">{l.label}</span>
+                )}
               </li>
             ))}
           </ul>

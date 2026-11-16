@@ -1,11 +1,13 @@
 import { img } from './images'
 
+// Main menu. Items with `href: null` are shown as plain labels until their
+// pages exist — set e.g. href: '/about' to turn one into a link.
 export const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Courses', href: '#courses' },
-  { label: 'FAQs', href: '#faqs' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: null },
+  { label: 'Courses', href: null },
+  { label: 'FAQs', href: null },
+  { label: 'Contact', href: null },
 ]
 
 export const TRUST_REASONS = [

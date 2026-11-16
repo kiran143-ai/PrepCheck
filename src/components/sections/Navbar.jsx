@@ -2,28 +2,16 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { NAV_LINKS } from '../../data/content'
-import { useScrollSpy } from '../../hooks/useScrollSpy'
+import { goHome } from '../../lib/nav'
 import { useDemo } from '../DemoContext'
 import { Button } from '../ui/Button'
 import { Logo } from '../ui/Logo'
 
-const IDS = NAV_LINKS.map((l) => l.href.slice(1))
-
-/** Smooth-scrolls to an in-page anchor (instant when reduced motion is preferred). */
-function scrollToHash(e, href) {
-  const el = document.querySelector(href)
-  if (!el) return
-  e.preventDefault()
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  requestAnimationFrame(() => {
-    el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
-    history.replaceState(null, '', href)
-  })
-}
+// This is the homepage, so Home is the current page.
+const CURRENT = '/'
 
 export function Navbar() {
   const { openDemo } = useDemo()
-  const active = useScrollSpy(IDS)
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const { scrollY } = useScroll()
@@ -58,26 +46,28 @@ export function Navbar() {
 
         <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center lg:flex">
           {NAV_LINKS.map((l) => {
-            const isActive = active === l.href.slice(1)
+            const isActive = l.href === CURRENT
             return (
-              <li key={l.href} className="relative">
+              <li key={l.label} className="relative">
                 {isActive && (
-                  <motion.span
-                    layoutId="nav-pill"
-                    className="absolute inset-0 rounded-full bg-white shadow-[0_2px_10px_rgb(20_26_60_/_0.08)]"
-                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                  />
+                  <span className="absolute inset-0 rounded-full bg-white shadow-[0_2px_10px_rgb(20_26_60_/_0.08)]" />
                 )}
-                <a
-                  href={l.href}
-                  onClick={(e) => scrollToHash(e, l.href)}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={`relative block rounded-full px-[18px] py-2 text-[15px] font-medium transition-colors duration-200 ${
-                    isActive ? 'text-ink' : 'text-ink-700/80 hover:text-brand'
-                  }`}
-                >
-                  {l.label}
-                </a>
+                {l.href ? (
+                  <a
+                    href={l.href}
+                    onClick={l.href === '/' ? goHome : undefined}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`relative block rounded-full px-[18px] py-2 text-[15px] font-medium transition-colors duration-200 ${
+                      isActive ? 'text-ink' : 'text-ink-700/80 hover:text-brand'
+                    }`}
+                  >
+                    {l.label}
+                  </a>
+                ) : (
+                  <span className="relative block cursor-default px-[18px] py-2 text-[15px] font-medium text-ink-700/80">
+                    {l.label}
+                  </span>
+                )}
               </li>
             )
           })}
@@ -113,23 +103,30 @@ export function Navbar() {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <ul className="container-site flex flex-col gap-1 py-4">
-              {NAV_LINKS.map((l, i) => (
-                <motion.li key={l.href} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.05 * i }}>
-                  <a
-                    href={l.href}
-                    onClick={(e) => {
-                      setOpen(false)
-                      scrollToHash(e, l.href)
-                    }}
-                    aria-current={active === l.href.slice(1) ? 'page' : undefined}
-                    className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
-                      active === l.href.slice(1) ? 'bg-brand-50 text-brand' : 'text-ink hover:bg-panel'
-                    }`}
-                  >
-                    {l.label}
-                  </a>
-                </motion.li>
-              ))}
+              {NAV_LINKS.map((l, i) => {
+                const isActive = l.href === CURRENT
+                return (
+                  <motion.li key={l.label} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.05 * i }}>
+                    {l.href ? (
+                      <a
+                        href={l.href}
+                        onClick={(e) => {
+                          setOpen(false)
+                          if (l.href === '/') goHome(e)
+                        }}
+                        aria-current={isActive ? 'page' : undefined}
+                        className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
+                          isActive ? 'bg-brand-50 text-brand' : 'text-ink hover:bg-panel'
+                        }`}
+                      >
+                        {l.label}
+                      </a>
+                    ) : (
+                      <span className="block px-4 py-3 text-base font-medium text-ink">{l.label}</span>
+                    )}
+                  </motion.li>
+                )
+              })}
               <li className="mt-2 sm:hidden">
                 <Button
                   variant="plain"
