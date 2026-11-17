@@ -81,7 +81,12 @@ export function AboutHero() {
           </motion.div>
         </div>
 
-        <PortraitVisual badges={BADGES} />
+        <PortraitVisual
+          badges={BADGES}
+          src={img['session-2']}
+          alt="Tutor guiding a young student through his work in a bright classroom"
+          position="center 30%"
+        />
       </div>
 
       {/* stats */}
@@ -113,8 +118,8 @@ export function AboutHero() {
         title="The PrepCheck Story"
         description="Why we started PrepCheck — and how we help every child learn with confidence."
         src={STORY_VIDEO_URL}
-        poster={img['session-2']}
-        posterAlt="Tutor guiding a young student through a lesson"
+        poster={img['match-school']}
+        posterAlt="Red-brick school building with a green lawn"
         comingSoon="Our story video is coming soon."
       />
     </section>

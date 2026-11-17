@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Headphones, Mail, Phone, Users, Zap } from 'lucide-react'
 import { CONTACT } from '../../data/content'
+import { img } from '../../data/images'
 import { PortraitVisual } from '../ui/PortraitVisual'
 
 const EASE = [0.22, 1, 0.36, 1]
@@ -70,7 +71,12 @@ export function ContactHero() {
           </motion.div>
         </div>
 
-        <PortraitVisual badges={BADGES} />
+        <PortraitVisual
+          badges={BADGES}
+          src={img['tutor-1']}
+          alt="Smiling PrepCheck team member ready to help"
+          position="center 18%"
+        />
       </div>
     </section>
   )

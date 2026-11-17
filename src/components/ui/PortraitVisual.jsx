@@ -29,7 +29,12 @@ function FloatBadge({ icon: Icon, label, cls, delay, bob, dur, reduce }) {
  * Hero visual shared by inner pages: a portrait photo on a softly morphing blob,
  * with floating feature badges. `badges` = [{ icon, label, cls, delay, bob, dur }].
  */
-export function PortraitVisual({ badges, src = img['hero-center'], alt = 'Smiling student with headphones studying on a laptop' }) {
+export function PortraitVisual({
+  badges,
+  src = img['hero-center'],
+  alt = 'Smiling student with headphones studying on a laptop',
+  position = 'center',
+}) {
   const reduce = useReducedMotion()
   return (
       <div className="relative mx-auto w-full max-w-[460px]">
@@ -69,6 +74,7 @@ export function PortraitVisual({ badges, src = img['hero-center'], alt = 'Smilin
           <img
             src={src}
             alt={alt}
+            style={{ objectPosition: position }}
             width={340}
             height={365}
             fetchPriority="high"

@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ChartColumn, CirclePlay, GraduationCap, Headphones } from 'lucide-react'
 import { useDemo } from '../DemoContext'
 import { Button } from '../ui/Button'
+import { img } from '../../data/images'
 import { PortraitVisual } from '../ui/PortraitVisual'
 
 const EASE = [0.22, 1, 0.36, 1]
@@ -93,7 +94,12 @@ export function CoursesHero() {
           </motion.dl>
         </div>
 
-        <PortraitVisual badges={BADGES} />
+        <PortraitVisual
+          badges={BADGES}
+          src={img['session-1']}
+          alt="Student smiling during a live one-on-one online class with her tutor"
+          position="center 35%"
+        />
       </div>
     </section>
   )
