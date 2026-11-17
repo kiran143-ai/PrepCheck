@@ -1,12 +1,13 @@
 import { img } from './images'
 
-// Main menu. Items with `href: null` are shown as plain labels until their
-// pages exist — set e.g. href: '/about' to turn one into a link.
+// Main menu (navbar + footer Quick Links). Items with `href: null` are shown as
+// plain labels until their pages exist. `header: false` hides an item from the
+// navbar and mobile menu but keeps it in the footer.
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Courses', href: '/courses' },
-  { label: 'FAQs', href: null },
+  { label: 'FAQs', href: null, header: false }, // footer only
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -211,3 +212,6 @@ export const SESSION_VIDEO_URL = ''
 
 // Set this to a hosted MP4 for the About page's “Watch Our Story” button.
 export const STORY_VIDEO_URL = ''
+
+
+export const HEADER_LINKS = NAV_LINKS.filter((l) => l.header !== false)

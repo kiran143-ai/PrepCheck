@@ -2,7 +2,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { NAV_LINKS } from '../../data/content'
+import { HEADER_LINKS } from '../../data/content'
 import { goHome } from '../../lib/nav'
 import { useDemo } from '../DemoContext'
 import { Button } from '../ui/Button'
@@ -44,7 +44,7 @@ export function Navbar() {
         <Logo className="ml-1" />
 
         <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center lg:flex">
-          {NAV_LINKS.map((l) => {
+          {HEADER_LINKS.map((l) => {
             const isActive = l.href === pathname
             return (
               <li key={l.label} className="relative">
@@ -106,7 +106,7 @@ export function Navbar() {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <ul className="container-site flex flex-col gap-1 py-4">
-              {NAV_LINKS.map((l, i) => {
+              {HEADER_LINKS.map((l, i) => {
                 const isActive = l.href === pathname
                 return (
                   <motion.li key={l.label} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.05 * i }}>
