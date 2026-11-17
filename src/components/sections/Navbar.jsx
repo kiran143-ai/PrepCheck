@@ -1,17 +1,16 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { NAV_LINKS } from '../../data/content'
 import { goHome } from '../../lib/nav'
 import { useDemo } from '../DemoContext'
 import { Button } from '../ui/Button'
 import { Logo } from '../ui/Logo'
 
-// This is the homepage, so Home is the current page.
-const CURRENT = '/'
-
 export function Navbar() {
   const { openDemo } = useDemo()
+  const { pathname } = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const { scrollY } = useScroll()
@@ -46,15 +45,19 @@ export function Navbar() {
 
         <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center lg:flex">
           {NAV_LINKS.map((l) => {
-            const isActive = l.href === CURRENT
+            const isActive = l.href === pathname
             return (
               <li key={l.label} className="relative">
                 {isActive && (
-                  <span className="absolute inset-0 rounded-full bg-white shadow-[0_2px_10px_rgb(20_26_60_/_0.08)]" />
+                  <motion.span
+                    layoutId="nav-pill"
+                    className="absolute inset-0 rounded-full bg-white shadow-[0_2px_10px_rgb(20_26_60_/_0.08)]"
+                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                  />
                 )}
                 {l.href ? (
-                  <a
-                    href={l.href}
+                  <Link
+                    to={l.href}
                     onClick={l.href === '/' ? goHome : undefined}
                     aria-current={isActive ? 'page' : undefined}
                     className={`relative block rounded-full px-[18px] py-2 text-[15px] font-medium transition-colors duration-200 ${
@@ -62,7 +65,7 @@ export function Navbar() {
                     }`}
                   >
                     {l.label}
-                  </a>
+                  </Link>
                 ) : (
                   <span className="relative block cursor-default px-[18px] py-2 text-[15px] font-medium text-ink-700/80">
                     {l.label}
@@ -104,12 +107,12 @@ export function Navbar() {
           >
             <ul className="container-site flex flex-col gap-1 py-4">
               {NAV_LINKS.map((l, i) => {
-                const isActive = l.href === CURRENT
+                const isActive = l.href === pathname
                 return (
                   <motion.li key={l.label} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.05 * i }}>
                     {l.href ? (
-                      <a
-                        href={l.href}
+                      <Link
+                        to={l.href}
                         onClick={(e) => {
                           setOpen(false)
                           if (l.href === '/') goHome(e)
@@ -120,7 +123,7 @@ export function Navbar() {
                         }`}
                       >
                         {l.label}
-                      </a>
+                      </Link>
                     ) : (
                       <span className="block px-4 py-3 text-base font-medium text-ink">{l.label}</span>
                     )}

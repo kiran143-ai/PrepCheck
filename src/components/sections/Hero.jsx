@@ -6,6 +6,7 @@ import { useDemo } from '../DemoContext'
 import { Button } from '../ui/Button'
 import { Counter } from '../ui/Counter'
 import { GhostType } from '../ui/GhostType'
+import { RisingLines } from '../ui/RisingLines'
 
 const EASE = [0.22, 1, 0.36, 1]
 
@@ -162,6 +163,7 @@ export function Hero() {
 
   return (
     <section id="home" ref={ref} className="relative overflow-hidden bg-[linear-gradient(180deg,#f1f2fe_0%,#f4f4fe_55%,#faf9ff_100%)] pt-[70px]">
+      <RisingLines />
       <Decorations reduce={reduce} />
       <div className="container-site relative text-center">
         <h1 className="heading-xl mx-auto pt-10 text-[clamp(2.25rem,6vw,3.8rem)] text-ink sm:pt-[63px]">

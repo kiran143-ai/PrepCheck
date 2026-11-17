@@ -16,8 +16,16 @@ export function useRotation(items) {
     setDirection(-1)
     setOffset((o) => (o - 1 + n) % n)
   }, [n])
+  const goTo = useCallback(
+    (i) => {
+      const target = ((i % n) + n) % n
+      setDirection(target >= offset ? 1 : -1)
+      setOffset(target)
+    },
+    [n, offset],
+  )
   const rotated = items.map((_, i) => items[(i + offset) % n])
-  return { rotated, offset, direction, next, prev }
+  return { rotated, offset, direction, next, prev, goTo }
 }
 
 /** Number of carousel items that fit, by breakpoint. */

@@ -5,6 +5,7 @@ const VARIANTS = {
     'bg-brand text-white shadow-brand hover:bg-brand-600 hover:shadow-[0_14px_30px_-8px_rgb(56_79_233_/_0.6)]',
   white: 'bg-white text-brand hover:bg-brand-50 shadow-[0_10px_24px_-10px_rgb(0_0_0_/_0.35)]',
   plain: 'bg-brand text-white hover:bg-brand-600',
+  outline: 'border-[1.5px] border-brand bg-white text-brand hover:bg-brand-50',
 }
 
 /** Pill button with an optional trailing arrow that nudges on hover. */

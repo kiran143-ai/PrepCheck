@@ -1,15 +1,35 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronDown, CircleAlert, CircleCheck, LoaderCircle, RotateCcw } from 'lucide-react'
+import { CircleCheck, LoaderCircle, RotateCcw } from 'lucide-react'
 import { useEffect, useId, useRef, useState } from 'react'
 import { SUBJECTS } from '../data/content'
 import { fakeSubmit, validateEmail } from '../hooks/useEmailForm'
 import { useDemo } from './DemoContext'
 import { Button } from './ui/Button'
+import { Field, Select } from './ui/FormControls'
 import { LogoMark } from './ui/Logo'
+import { inputCls } from '../lib/formStyles'
 
 const GRADES = ['Grade 1–3', 'Grade 4–6', 'Grade 7–8', 'Grade 9–10', 'Grade 11–12']
-const SUBJECT_OPTIONS = [...SUBJECTS.map((s) => s.name), 'SAT Preparation']
-const CURRICULA = ['Common Core (USA)', 'NAPLAN (Australia)', 'IGCSE / GCSE (UK)', 'SAT (College Board)', 'Other']
+const SUBJECT_OPTIONS = [
+  ...SUBJECTS.map((s) => s.name),
+  'SAT Preparation',
+  'Board Exam Preparation',
+  'Mental Ability & Reasoning',
+  'Study Skills',
+  'Tutor Training',
+  'Not sure yet',
+]
+const CURRICULA = [
+  'NCERT / CBSE',
+  'ICSE',
+  'State Board',
+  'IB',
+  'IGCSE / GCSE (UK)',
+  'Common Core (USA)',
+  'NAPLAN (Australia)',
+  'SAT (College Board)',
+  'Other',
+]
 const PHONE_RE = /^\+?[\d\s()-]{7,20}$/
 const EMPTY = { name: '', email: '', phone: '', grade: '', subject: '', curriculum: '' }
 
@@ -22,47 +42,6 @@ function validate(v) {
   if (!v.grade) e.grade = 'Please choose a grade.'
   if (!v.subject) e.subject = 'Please choose a subject.'
   return e
-}
-
-function Field({ id, label, error, optional, children, className = '' }) {
-  return (
-    <div className={className}>
-      <label htmlFor={id} className="mb-1.5 block text-[13px] font-semibold text-ink">
-        {label} {optional && <span className="font-normal text-subtle">(optional)</span>}
-      </label>
-      {children}
-      <AnimatePresence initial={false}>
-        {error && (
-          <motion.p
-            id={`${id}-error`}
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="flex items-center gap-1.5 overflow-hidden pt-1.5 text-[12.5px] text-red-600"
-          >
-            <CircleAlert className="size-3.5 shrink-0" aria-hidden="true" />
-            {error}
-          </motion.p>
-        )}
-      </AnimatePresence>
-    </div>
-  )
-}
-
-const inputCls = (err, highlight) =>
-  `h-11 w-full rounded-xl border bg-white px-3.5 text-[14.5px] text-ink placeholder:text-subtle/80 outline-none transition-all duration-300 focus:border-brand focus:ring-4 focus:ring-brand/15 ${
-    err ? 'border-red-400' : highlight ? 'border-brand ring-4 ring-brand/15' : 'border-line hover:border-ink/25'
-  }`
-
-function Select({ className, children, ...props }) {
-  return (
-    <div className="relative">
-      <select {...props} className={`${className} cursor-pointer appearance-none pr-9`}>
-        {children}
-      </select>
-      <ChevronDown className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-subtle" aria-hidden="true" />
-    </div>
-  )
 }
 
 /** Inline "book a free demo" form. Lives inside the final CTA card — no modal. */

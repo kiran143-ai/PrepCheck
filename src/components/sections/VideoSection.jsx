@@ -3,16 +3,13 @@ import { Play } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { SESSION_VIDEO_URL } from '../../data/content'
 import { img } from '../../data/images'
-import { useDemo } from '../DemoContext'
-import { Button } from '../ui/Button'
-import { Modal } from '../ui/Modal'
+import { VideoDialog } from '../ui/VideoDialog'
 import { Reveal } from '../ui/Reveal'
 
 export function VideoSection() {
   const ref = useRef(null)
   const reduce = useReducedMotion()
   const [open, setOpen] = useState(false)
-  const { openDemo } = useDemo()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], reduce ? ['0%', '0%'] : ['-1.5%', '1.5%'])
 
@@ -56,38 +53,14 @@ export function VideoSection() {
         </div>
       </Reveal>
 
-      <Modal
+      <VideoDialog
         open={open}
         onClose={() => setOpen(false)}
         title="Inside a PrepCheck Session"
         description="A quick look at how our tutors run live, one-on-one lessons."
-        size="max-w-3xl"
-      >
-        {SESSION_VIDEO_URL ? (
-          <video src={SESSION_VIDEO_URL} controls autoPlay className="aspect-video w-full rounded-2xl bg-black" />
-        ) : (
-          <div className="relative overflow-hidden rounded-2xl">
-            <img src={img['session-1']} alt="Student in a live online lesson" className="aspect-video w-full object-cover" />
-            <div className="absolute inset-0 grid place-items-center bg-ink/55 p-6 text-center text-white">
-              <div>
-                <p className="text-lg font-bold">The full session walkthrough is coming soon.</p>
-                <p className="mt-2 text-sm text-white/80">See it live instead — book a free demo lesson for your child.</p>
-                <Button
-                  variant="white"
-                  arrow
-                  className="mt-5 h-11 px-6 text-[15px]"
-                  onClick={() => {
-                    setOpen(false)
-                    openDemo()
-                  }}
-                >
-                  Book a Free Demo
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
-      </Modal>
+        src={SESSION_VIDEO_URL}
+        comingSoon="The full session walkthrough is coming soon."
+      />
     </section>
   )
 }

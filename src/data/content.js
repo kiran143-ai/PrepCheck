@@ -4,10 +4,10 @@ import { img } from './images'
 // pages exist — set e.g. href: '/about' to turn one into a link.
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'About Us', href: null },
-  { label: 'Courses', href: null },
+  { label: 'About Us', href: '/about' },
+  { label: 'Courses', href: '/courses' },
   { label: 'FAQs', href: null },
-  { label: 'Contact', href: null },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export const TRUST_REASONS = [
@@ -183,12 +183,12 @@ export const COUNTRIES = [
 ]
 
 export const FOOTER_COUNTRY_LINKS = [
-  { label: 'USA Tutoring', href: '#country-usa' },
-  { label: 'Australia Tutoring', href: '#country-australia' },
-  { label: 'UK Tutoring', href: '#country-uk' },
-  { label: 'Common Core', href: '#country-usa' },
-  { label: 'NAPLAN', href: '#country-australia' },
-  { label: 'IGCSE', href: '#country-uk' },
+  { label: 'USA Tutoring', href: '/#country-usa' },
+  { label: 'Australia Tutoring', href: '/#country-australia' },
+  { label: 'UK Tutoring', href: '/#country-uk' },
+  { label: 'Common Core', href: '/#country-usa' },
+  { label: 'NAPLAN', href: '/#country-australia' },
+  { label: 'IGCSE', href: '/#country-uk' },
 ]
 
 export const CONTACT = {
@@ -196,7 +196,18 @@ export const CONTACT = {
   phone: '+91 8169147161',
   phoneHref: 'tel:+918169147161',
   email: 'contact@prepcheckacademy.com',
+  hours: { days: 'Monday – Sunday', time: '24/7 Available' },
+}
+
+const MAP_QUERY = encodeURIComponent(`PrepCheck, ${CONTACT.address}`)
+export const MAPS = {
+  view: `https://www.google.com/maps/search/?api=1&query=${MAP_QUERY}`,
+  directions: `https://www.google.com/maps/dir/?api=1&destination=${MAP_QUERY}`,
+  embed: `https://www.google.com/maps?q=${MAP_QUERY}&output=embed`,
 }
 
 // Set this to a hosted MP4 to play a real session preview in the video modal.
 export const SESSION_VIDEO_URL = ''
+
+// Set this to a hosted MP4 for the About page's “Watch Our Story” button.
+export const STORY_VIDEO_URL = ''

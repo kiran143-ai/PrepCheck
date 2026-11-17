@@ -11,7 +11,12 @@ const PERKS = [
   { icon: ShieldCheck, text: 'Verified tutors, secure sessions, no payment needed' },
 ]
 
-export function CtaSection() {
+export function CtaSection({
+  eyebrow = 'Start Your Journey Today',
+  title = 'Set Your Child on the Journey to Academic Excellence',
+  description = 'Tell us about your child and a PrepCheck counselor will match them with the right tutor — starting with a free demo class.',
+  uppercase = true,
+}) {
   const reduce = useReducedMotion()
   return (
     <section id={DEMO_SECTION_ID} aria-labelledby="cta-title" className="container-site pt-20 lg:pt-[77px]">
@@ -45,13 +50,12 @@ export function CtaSection() {
             >
               <GraduationCap className="size-5" aria-hidden="true" />
             </motion.span>
-            <p className="mt-5 text-[15px] text-white/90">Start Your Journey Today</p>
-            <h2 id="cta-title" className="heading-lg mt-2 text-[clamp(1.625rem,3.4vw,2.375rem)] leading-[1.15] uppercase">
-              Set Your Child on the Journey to Academic Excellence
+            <p className="mt-5 text-[15px] text-white/90">{eyebrow}</p>
+            <h2 id="cta-title" className={`heading-lg mt-2 text-[clamp(1.625rem,3.4vw,2.375rem)] leading-[1.15] ${uppercase ? 'uppercase' : ''}`}>
+              {title}
             </h2>
             <p className="mx-auto mt-4 max-w-[460px] text-[15px] leading-6 text-white/80 lg:mx-0">
-              Tell us about your child and a PrepCheck counselor will match them with the right tutor — starting with a
-              free demo class.
+              {description}
             </p>
 
             <RevealGroup as="ul" className="mx-auto mt-7 max-w-[440px] space-y-3 text-left lg:mx-0" stagger={0.1}>

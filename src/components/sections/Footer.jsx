@@ -1,5 +1,6 @@
 import { CircleAlert, CircleCheck, LoaderCircle, Mail, MapPin, Phone } from 'lucide-react'
 import { useId, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { CONTACT, FOOTER_COUNTRY_LINKS, NAV_LINKS } from '../../data/content'
 import { useEmailForm } from '../../hooks/useEmailForm'
 import { goHome } from '../../lib/nav'
@@ -116,9 +117,9 @@ export function Footer() {
             {NAV_LINKS.map((l) => (
               <li key={l.label}>
                 {l.href ? (
-                  <a href={l.href} onClick={l.href === '/' ? goHome : undefined} className={linkCls}>
+                  <Link to={l.href} onClick={l.href === '/' ? goHome : undefined} className={linkCls}>
                     {l.label}
-                  </a>
+                  </Link>
                 ) : (
                   <span className="text-[13.5px] leading-5 text-ink-700/85">{l.label}</span>
                 )}
@@ -132,7 +133,7 @@ export function Footer() {
           <ul className="mt-5 space-y-[14px]">
             {FOOTER_COUNTRY_LINKS.map((l) => (
               <li key={l.label}>
-                <a href={l.href} className={linkCls}>{l.label}</a>
+                <Link to={l.href} className={linkCls}>{l.label}</Link>
               </li>
             ))}
           </ul>
