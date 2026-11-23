@@ -1,8 +1,8 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { LogIn, Menu, Phone, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { HEADER_LINKS } from '../../data/content'
+import { CONTACT, HEADER_LINKS, LOGIN_URL } from '../../data/content'
 import { goHome } from '../../lib/nav'
 import { useDemo } from '../DemoContext'
 import { Button } from '../ui/Button'
@@ -79,11 +79,26 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
+          <a
+            href={CONTACT.phoneHref}
+            aria-label={`Call us on ${CONTACT.phone}`}
+            title={CONTACT.phone}
+            className="group hidden h-10 items-center gap-2 rounded-full px-3 text-[15px] font-medium text-ink-700 transition-colors hover:bg-brand-50 hover:text-brand lg:inline-flex"
+          >
+            <Phone className="size-4 text-brand transition-transform duration-300 group-hover:rotate-12" aria-hidden="true" />
+            <span className="hidden xl:inline">Call Us</span>
+          </a>
           <span className="hidden sm:inline-flex">
             <Button variant="plain" className="h-10 px-5 text-[15px]" onClick={() => openDemo()}>
               Book a Demo
             </Button>
           </span>
+          <a
+            href={LOGIN_URL}
+            className="hidden h-10 items-center gap-1.5 rounded-full border-[1.5px] border-brand bg-white px-5 text-[15px] font-semibold text-brand transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-50 md:inline-flex"
+          >
+            Login
+          </a>
           <button
             type="button"
             className="grid size-10 place-items-center rounded-full text-ink transition-colors hover:bg-brand-50 lg:hidden"
@@ -132,6 +147,20 @@ export function Navbar() {
                   </motion.li>
                 )
               })}
+              <li className="mt-3 grid grid-cols-2 gap-2 border-t border-line pt-4">
+                <a
+                  href={CONTACT.phoneHref}
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-brand-50 text-[15px] font-semibold text-brand transition-colors hover:bg-brand-100"
+                >
+                  <Phone className="size-4" aria-hidden="true" /> Call Us
+                </a>
+                <a
+                  href={LOGIN_URL}
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border-[1.5px] border-brand text-[15px] font-semibold text-brand transition-colors hover:bg-brand-50"
+                >
+                  <LogIn className="size-4" aria-hidden="true" /> Login
+                </a>
+              </li>
               <li className="mt-2 sm:hidden">
                 <Button
                   variant="plain"

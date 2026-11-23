@@ -2,6 +2,7 @@ import { MotionConfig } from 'framer-motion'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { DemoProvider } from './components/DemoContext'
+import { FloatingActions } from './components/FloatingActions'
 import { ScrollManager } from './components/ScrollManager'
 import { Footer } from './components/sections/Footer'
 import { Navbar } from './components/sections/Navbar'
@@ -43,6 +44,7 @@ export default function App() {
           </Suspense>
         </main>
         <Footer />
+        <FloatingActions />
       </DemoProvider>
     </MotionConfig>
   )

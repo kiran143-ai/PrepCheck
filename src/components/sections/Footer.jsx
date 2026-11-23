@@ -75,7 +75,7 @@ function Subscribe() {
 export function Footer() {
   return (
     <footer id="contact" className="mt-20 border-t border-line lg:mt-20">
-      <Reveal className="container-site grid gap-10 pt-14 pb-12 sm:grid-cols-2 lg:grid-cols-[348px_216px_238px_1fr] lg:gap-0">
+      <Reveal className="container-site grid gap-10 pt-14 pb-12 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_0.95fr_1.4fr] lg:gap-6 xl:grid-cols-[348px_216px_238px_1fr] xl:gap-0">
         <div className="lg:pr-10">
           <LogoStacked className="-ml-1 h-[104px] w-auto" />
           <p className="mt-5 max-w-[300px] text-[14px] leading-[21px] text-muted">
@@ -147,7 +147,7 @@ export function Footer() {
       </Reveal>
 
       <div className="border-t border-line">
-        <div className="container-site flex flex-col gap-3 py-5 text-[13px] text-ink-700/85 sm:flex-row sm:items-center sm:justify-between">
+        <div className="container-site flex flex-col gap-3 pt-5 pb-28 sm:pr-[92px] sm:pb-5 lg:pb-24 xl:pr-5 xl:pb-5 text-[13px] text-ink-700/85 sm:flex-row sm:items-center sm:justify-between">
           <p>© {YEAR} PrepCheck. All rights reserved.</p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {POLICY_LINKS.map((p) => (

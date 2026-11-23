@@ -196,6 +196,7 @@ export const CONTACT = {
   address: 'D wing, 109, Shram Saphalaya Bldg, Sheetal Nagar, Mira Road East, Mumbai - 401107',
   phone: '+91 8169147161',
   phoneHref: 'tel:+918169147161',
+  whatsapp: '918169147161', // international format, digits only
   email: 'contact@prepcheckacademy.com',
   hours: { days: 'Monday – Sunday', time: '24/7 Available' },
 }
@@ -215,6 +216,9 @@ export const STORY_VIDEO_URL = ''
 
 
 export const HEADER_LINKS = NAV_LINKS.filter((l) => l.header !== false)
+
+// Student/parent portal (hosted on Wise).
+export const LOGIN_URL = 'https://prepcheck.wise.live/login'
 
 export const POLICY_LINKS = [
   { label: 'Refund/Cancellation Policy', href: '/refund-policy' },
