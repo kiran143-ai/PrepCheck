@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
-import { LogIn, Menu, Phone, X } from 'lucide-react'
+import { ExternalLink, LogIn, Menu, Phone, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { CONTACT, HEADER_LINKS, LOGIN_URL } from '../../data/content'
@@ -95,9 +95,13 @@ export function Navbar() {
           </span>
           <a
             href={LOGIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Login (opens in a new tab)"
             className="hidden h-10 items-center gap-1.5 rounded-full border-[1.5px] border-brand bg-white px-5 text-[15px] font-semibold text-brand transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-50 md:inline-flex"
           >
             Login
+            <ExternalLink className="size-3.5 opacity-70" aria-hidden="true" />
           </a>
           <button
             type="button"
@@ -156,9 +160,13 @@ export function Navbar() {
                 </a>
                 <a
                   href={LOGIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Login (opens in a new tab)"
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-full border-[1.5px] border-brand text-[15px] font-semibold text-brand transition-colors hover:bg-brand-50"
                 >
                   <LogIn className="size-4" aria-hidden="true" /> Login
+                  <ExternalLink className="size-3.5 opacity-70" aria-hidden="true" />
                 </a>
               </li>
               <li className="mt-2 sm:hidden">
