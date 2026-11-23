@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { CircleAlert, CircleCheck, LoaderCircle, RotateCcw, Send } from 'lucide-react'
 import { useEffect, useId, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { BOARDS, COURSES, COURSE_CATEGORIES } from '../../data/courses'
 import { fakeSubmit, validateEmail } from '../../hooks/useEmailForm'
 import { inputCls } from '../../lib/formStyles'
@@ -210,7 +211,9 @@ export function ContactForm() {
                   className="mt-0.5 size-4 shrink-0 cursor-pointer accent-brand"
                 />
                 <span>
-                  I agree to the Terms of Service and Privacy Policy. I consent to be contacted about tutoring services.{' '}
+                  I agree to the{' '}
+                  <Link to="/terms-of-service" target="_blank" rel="noopener" className="font-semibold text-brand hover:underline">Terms of Service</Link> and{' '}
+                  <Link to="/privacy-policy" target="_blank" rel="noopener" className="font-semibold text-brand hover:underline">Privacy Policy</Link>. I consent to be contacted about tutoring services.{' '}
                   <span className="text-red-600">*</span>
                 </span>
               </label>

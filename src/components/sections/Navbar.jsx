@@ -11,6 +11,8 @@ import { Logo } from '../ui/Logo'
 export function Navbar() {
   const { openDemo } = useDemo()
   const { pathname } = useLocation()
+  // Pages whose hero is a dark band: keep the navbar solid so links stay readable.
+  const solid = /^\/(refund-policy|privacy-policy|terms-of-service|cookie-policy)$/.test(pathname)
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const { scrollY } = useScroll()
@@ -31,7 +33,7 @@ export function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled || open ? 'bg-white/85 shadow-[0_1px_0_rgb(12_13_22_/_0.06)] backdrop-blur-xl' : 'bg-transparent'
+        scrolled || open || solid ? 'bg-white/85 shadow-[0_1px_0_rgb(12_13_22_/_0.06)] backdrop-blur-xl' : 'bg-transparent'
       }`}
     >
       <motion.nav

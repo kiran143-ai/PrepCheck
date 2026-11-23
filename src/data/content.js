@@ -184,12 +184,12 @@ export const COUNTRIES = [
 ]
 
 export const FOOTER_COUNTRY_LINKS = [
-  { label: 'USA Tutoring', href: '/#country-usa' },
-  { label: 'Australia Tutoring', href: '/#country-australia' },
-  { label: 'UK Tutoring', href: '/#country-uk' },
-  { label: 'Common Core', href: '/#country-usa' },
-  { label: 'NAPLAN', href: '/#country-australia' },
-  { label: 'IGCSE', href: '/#country-uk' },
+  { label: 'USA Tutoring', href: '/tutoring/usa' },
+  { label: 'Australia Tutoring', href: '/tutoring/australia' },
+  { label: 'UK Tutoring', href: '/tutoring/uk' },
+  { label: 'Common Core', href: '/tutoring/usa#curriculum' },
+  { label: 'NAPLAN', href: '/tutoring/australia#curriculum' },
+  { label: 'IGCSE', href: '/tutoring/uk#curriculum' },
 ]
 
 export const CONTACT = {
@@ -215,3 +215,10 @@ export const STORY_VIDEO_URL = ''
 
 
 export const HEADER_LINKS = NAV_LINKS.filter((l) => l.header !== false)
+
+export const POLICY_LINKS = [
+  { label: 'Refund/Cancellation Policy', href: '/refund-policy' },
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms of Service', href: '/terms-of-service' },
+  { label: 'Cookie Policy', href: '/cookie-policy' },
+]

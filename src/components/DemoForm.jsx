@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { CircleCheck, LoaderCircle, RotateCcw } from 'lucide-react'
 import { useEffect, useId, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { SUBJECTS } from '../data/content'
 import { fakeSubmit, validateEmail } from '../hooks/useEmailForm'
 import { useDemo } from './DemoContext'
@@ -203,7 +204,10 @@ export function DemoForm() {
                 'Get Started Today'
               )}
             </Button>
-            <p className="mt-3 text-center text-[12px] text-subtle">We’ll never share your details. Unsubscribe any time.</p>
+            <p className="mt-3 text-center text-[12px] text-subtle">
+              We’ll never share your details. See our{' '}
+              <Link to="/privacy-policy" className="font-semibold text-brand hover:underline">Privacy Policy</Link>.
+            </p>
           </motion.form>
         )}
       </AnimatePresence>

@@ -11,6 +11,8 @@ const AboutPage = lazy(() => import('./pages/AboutPage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
 const CoursesPage = lazy(() => import('./pages/CoursesPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
+const CountryTutoringPage = lazy(() => import('./pages/CountryTutoringPage'))
+const LegalPage = lazy(() => import('./pages/LegalPage'))
 
 export default function App() {
   return (
@@ -31,6 +33,11 @@ export default function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/courses" element={<CoursesPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/tutoring/:country" element={<CountryTutoringPage />} />
+              <Route path="/refund-policy" element={<LegalPage slug="refund-policy" />} />
+              <Route path="/privacy-policy" element={<LegalPage slug="privacy-policy" />} />
+              <Route path="/terms-of-service" element={<LegalPage slug="terms-of-service" />} />
+              <Route path="/cookie-policy" element={<LegalPage slug="cookie-policy" />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>

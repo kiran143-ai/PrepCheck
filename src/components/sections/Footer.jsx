@@ -1,11 +1,9 @@
 import { CircleAlert, CircleCheck, LoaderCircle, Mail, MapPin, Phone } from 'lucide-react'
-import { useId, useState } from 'react'
+import { useId } from 'react'
 import { Link } from 'react-router-dom'
-import { CONTACT, FOOTER_COUNTRY_LINKS, NAV_LINKS } from '../../data/content'
+import { CONTACT, FOOTER_COUNTRY_LINKS, NAV_LINKS, POLICY_LINKS } from '../../data/content'
 import { useEmailForm } from '../../hooks/useEmailForm'
 import { goHome } from '../../lib/nav'
-import { useDemo } from '../DemoContext'
-import { Modal } from '../ui/Modal'
 import { LogoStacked } from '../ui/Logo'
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from '../ui/SocialIcons'
 import { Reveal } from '../ui/Reveal'
@@ -15,15 +13,6 @@ const SOCIALS = [
   { label: 'PrepCheck on Instagram', href: 'https://instagram.com', Icon: InstagramIcon },
   { label: 'PrepCheck on LinkedIn', href: 'https://linkedin.com', Icon: LinkedinIcon },
 ]
-
-const POLICIES = {
-  'Refund/Cancellation Policy':
-    'You can cancel or reschedule any session up to 24 hours in advance for a full credit. Unused prepaid sessions are refundable within 30 days of purchase.',
-  'Privacy Policy':
-    'We only collect the information needed to match and support your child. We never sell personal data, and all sessions run on an encrypted platform.',
-  'Terms of Service':
-    'By booking with PrepCheck you agree to our session, payment and conduct guidelines. Full terms are shared with every enrolment confirmation.',
-}
 
 const YEAR = new Date().getFullYear()
 
@@ -84,8 +73,6 @@ function Subscribe() {
 }
 
 export function Footer() {
-  const [policy, setPolicy] = useState(null)
-  const { openDemo } = useDemo()
   return (
     <footer id="contact" className="mt-20 border-t border-line lg:mt-20">
       <Reveal className="container-site grid gap-10 pt-14 pb-12 sm:grid-cols-2 lg:grid-cols-[348px_216px_238px_1fr] lg:gap-0">
@@ -163,38 +150,17 @@ export function Footer() {
         <div className="container-site flex flex-col gap-3 py-5 text-[13px] text-ink-700/85 sm:flex-row sm:items-center sm:justify-between">
           <p>© {YEAR} PrepCheck. All rights reserved.</p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
-            {Object.keys(POLICIES).map((p) => (
-              <li key={p}>
-                <button type="button" onClick={() => setPolicy(p)} className="transition-colors hover:text-brand">
-                  {p}
-                </button>
+            {POLICY_LINKS.map((p) => (
+              <li key={p.href}>
+                <Link to={p.href} className="transition-colors hover:text-brand">
+                  {p.label}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
       </div>
 
-      <Modal open={!!policy} onClose={() => setPolicy(null)} title={policy ?? ''}>
-        <p className="text-[15px] leading-6 text-muted">{policy && POLICIES[policy]}</p>
-        <p className="mt-4 text-[14px] text-muted">
-          Questions? Email{' '}
-          <a className="font-semibold text-brand hover:underline" href={`mailto:${CONTACT.email}`}>
-            {CONTACT.email}
-          </a>{' '}
-          or{' '}
-          <button
-            type="button"
-            className="font-semibold text-brand hover:underline"
-            onClick={() => {
-              setPolicy(null)
-              openDemo()
-            }}
-          >
-            book a call
-          </button>
-          .
-        </p>
-      </Modal>
     </footer>
   )
 }

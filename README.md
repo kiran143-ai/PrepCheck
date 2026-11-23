@@ -12,6 +12,8 @@ Built with **React 19**, **Vite**, **React Router**, **Tailwind CSS v4**, **Fram
 | `/about`   | About Us — stats, 3-step approach, roadmap, team         |
 | `/courses` | Courses — categories, searchable catalog, boards         |
 | `/contact` | Contact — details, map, contact form                     |
+| `/tutoring/usa` · `/tutoring/australia` · `/tutoring/uk` | Country tutoring pages (`src/data/countries.js`) |
+| `/refund-policy` · `/privacy-policy` · `/terms-of-service` · `/cookie-policy` | Legal pages (`src/data/legal.js`) |
 | `*`        | 404                                                      |
 
 The site is a single-page app: when hosting, serve `index.html` for every route (SPA fallback / rewrite).
